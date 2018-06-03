@@ -1,0 +1,7 @@
+- name: Customise banner and prompt
+  hosts: all_vm
+  tasks:
+  - name: Modify main banner
+    become: yes
+    become_user: root
+copy: backup=yes src=motd dest=/etc/ owner=root group=root mode=0644
