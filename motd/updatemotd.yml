@@ -1,3 +1,4 @@
+---
 - name: Customise banner and prompt
   hosts: all_vm
   tasks:
