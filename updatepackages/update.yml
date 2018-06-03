@@ -1,6 +1,5 @@
----
-- name: Customise banner and prompt
-  hosts: all_vm
+- name: Update Base OS
+  hosts: all
   tasks:
     - name: ==== Include Archlinux.yml ====
       include_tasks: tasks/Archlinux.yml
