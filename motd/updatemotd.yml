@@ -4,4 +4,4 @@
   - name: Modify main banner
     become: yes
     become_user: root
-copy: backup=yes src=motd dest=/etc/ owner=root group=root mode=0644
+  - copy: backup=yes src=motd dest=/etc/ owner=root group=root mode=0644
