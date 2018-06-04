@@ -1,0 +1,115 @@
+- name: Implement security policies
+  hosts: all
+  tasks:
+    - name: Stop unused services
+      command: "systemctl stop {{item}}"
+      ignore_errors: True
+      failed_when: false
+      with_items:
+          - xinetd
+          - rexec
+          - rsh
+          - rlogin
+          - ypbind
+          - tftp
+          - certmonger
+          - cgconfig
+          - cgred
+          - cpuspeed
+          - kdump
+          - mdmonitor
+          - messagebus
+          - netconsole
+          - oddjobd
+          - portreserve
+          - qpidd
+          - quota_nld
+          - rdisc
+          - rhnsd
+          - rhsmcertd
+          - saslauthd
+          - smartd
+          - sysstat
+          - atd
+          - nfslock
+          - named
+          - httpd
+          - dovecot
+          - squid
+          - snmpd
+
+    - name: Disable unused services
+      command: "systemctl disable {{item}}"
+      ignore_errors: True
+      with_items:
+          - xinetd
+          - rexec
+          - rsh
+          - rlogin
+          - ypbind
+          - tftp
+          - certmonger
+          - cgconfig
+          - cgred
+          - cpuspeed
+          - kdump
+          - mdmonitor
+          - messagebus
+          - netconsole
+          - oddjobd
+          - portreserve
+          - qpidd
+          - quota_nld
+          - rdisc
+          - rhnsd
+          - rhsmcertd
+          - saslauthd
+          - smartd
+          - sysstat
+          - atd
+          - nfslock
+          - named
+          - httpd
+          - dovecot
+          - squid
+          - snmpd
+
+    - name: Start core services
+      command: "systemctl start {{item}}"
+      ignore_errors: True
+      with_items:
+          - irqbalance
+          - crond
+          - psacct
+
+    - name: Start core services
+      command: "systemctl enable {{item}}"
+      ignore_errors: True
+      with_items:
+          - irqbalance
+          - crond
+          - psacct
+
+    - name: SECURE - Disable IPv6
+      lineinfile:
+        path: /etc/sysconfig/network
+        line: "{{item}}"
+        state: present
+      with_items:
+        - "NETWORKING_IPV6=no"
+        - "IPV6INIT=no"
+
+    - name: SECURE -  Touch OS Security file
+      file: 
+        path: /etc/profile.d/os-security.sh
+        state: touch
+        mode: "u=rwx,g=rx,o=rx"
+
+    - name: SECURE - Remove Idle users after 15 mins
+      lineinfile:
+        path: /etc/profile.d/os-security.sh
+        line: "{{item}}"
+        state: present
+      with_items:
+        - "readonly TMOUT=900"
+        - "readonly HISTFILE"

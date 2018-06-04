@@ -1,0 +1,10 @@
+- name: TESTING
+  hosts: all
+  tasks:
+    - name: Get PWD
+      local_action: shell pwd
+      register: currentworkingdirectory
+      become: false
+
+    - name: Directory
+      debug: msg="{{currentworkingdirectory.stdout}}"

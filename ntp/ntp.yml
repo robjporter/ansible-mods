@@ -1,0 +1,40 @@
+- name: Install & Configure NTP
+  hosts: all
+  tasks:
+    - name: Check NTP packages are installed
+      yum: name={{ item }} state=installed
+      with_items:
+        - ntp
+        - ntpdate
+        - ntp-doc 
+
+    - name: Update Timezone using timedatectl to {{timezone}}
+      command: "timedatectl set-timezone {{timezone}}"
+      become_method: sudo
+
+    - name: Update Timezone using timedatectl to support ntp
+      command: "timedatectl set-ntp true"
+      become_method: sudo
+
+    - name: Remove old /etc/localtime file
+      file:
+        path: /etc/localtime
+        state: absent
+
+    - name: Update Timezone using /etc/localtime to {{timezone}}
+      command: "cp /usr/share/zoneinfo/{{timezone}} /etc/localtime"
+      become_method: sudo
+
+    - name: Configure ntp file
+      template: src=ntp.conf dest=/etc/ntp.conf
+      tags: ntp
+
+    - name: Start the ntp service
+      service: 
+        name: ntpd 
+        state: restarted 
+        enabled: yes
+
+    - name: Hardware clock sync
+      command: "hwclock --systohc"
+      become_method: sudo

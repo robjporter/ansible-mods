@@ -1,6 +1,6 @@
----
-# This playbook contains common plays that will be run on all nodes.
-
-- name: Set hostname
-  hostname: 
-    name: "{{hostname}}"
+- name: Install Proxy
+  hosts: all
+  tasks:
+    - name: Set hostname
+      hostname: 
+        name: "{{hostname}}"
