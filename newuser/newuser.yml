@@ -2,7 +2,7 @@
   hosts: all
   tasks:
   - name: create user
-    user: name:{{username}}
+    user: name:"{{username}}"
           createhome:yes
           state:present 
           password:{{password}}
