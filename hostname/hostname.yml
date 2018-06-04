@@ -1,4 +1,4 @@
-- name: Install Proxy
+- name: Update hostname
   hosts: all
   tasks:
     - name: Set hostname
