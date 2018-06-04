@@ -1,0 +1,66 @@
+- name: === Verify EPEL status ====
+  stat: path={{ epel_repofile_path }}
+  register: epel_repofile_result
+
+- name: ==== Install EPEL repo ====
+  yum:
+    name: "{{ epel_repo_url }}"
+    state: present
+  register: result
+  until: '"failed" not in result'
+  retries: 5
+  delay: 10
+  when: not epel_repofile_result.stat.exists
+
+- name: ==== Get EPEL public key ====
+  rpm_key:
+    key: http://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-7
+    state: present
+  ignore_errors: yes
+
+#- name: ==== Add Cisco repository ====
+#  yum_repository:
+#    name: Cisco
+#    description: Cisco YUM repo
+#    baseurl: http://lwr-linux.cisco.com/centos/
+
+- name: === Clean metadata ====
+  command: yum clean metadata
+  args:
+    warn: no
+
+- name: === Update new repos ====
+  command: yum update
+  args:
+    warn: no
+
+- name: ==== Install core apps ====
+  yum: name={{ item }} state=installed
+  when: ansible_os_family == 'RedHat'
+  with_items:
+    - bash-completion
+    - wget
+    - rsync
+    - tmux
+    - nmap
+    - nmap-ncat
+    - git
+    - unzip
+    - nano
+    - net-tools
+    - curl
+    - vim-enhanced
+    - libselinux-python
+    - traceroute
+    - yum-utils
+    - device-mapper-persistent-data
+    - pv
+    - bind-utils
+    - fortune-mod
+    - cowsay
+    - open-vm-tools
+    - libselinux-python
+    - lsof
+    - sysstat
+    - dstat
+    - yum-cron
