@@ -4,8 +4,8 @@
   - name: Add a new tenant
     aci_tenant:
         host: "{{ inventory_hostname }}"
-        username: "{{ inventory_username }}"
-        password: "{{ inventory_password }}"
+        username: "{{ ANSIBLE_NET_USERNAME }}"
+        password: "{{ ANSIBLE_NET_PASSWORD }}"
         tenant: "{{ aci_tenant }}"
         description: "{{ aci_tenant_description }}"
         state: present

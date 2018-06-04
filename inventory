@@ -1,0 +1,3 @@
+[all]
+
+10.52.208.100     ansible_connection=ssh        ansible_user=root      ansible_password=C15co123
