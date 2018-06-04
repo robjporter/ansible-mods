@@ -1,4 +1,4 @@
-- name: Update Base OS
+- name: Send a message to WebEx Teams
   hosts: all
   tasks:
     - name: Cisco Spark - Text Message to a Room
