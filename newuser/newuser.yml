@@ -2,15 +2,15 @@
   hosts: all
   tasks:
   - name: create user
-    user: name={{username}}
-          createhome=yes
-          state=present 
-          password={{password}}
-          append=yes
-          groups=users
-          shell= "/bin/bash"
-          update_password=always
-          comment="User created via automation"
+    user: name:{{username}}
+          createhome:yes
+          state:present 
+          password:{{password}}
+          append:yes
+          groups:users
+          shell:"/bin/bash"
+          update_password:always
+          comment:"User created via automation"
     register: newusercreated
 
   - name: User created
