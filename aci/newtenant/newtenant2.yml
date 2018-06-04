@@ -1,16 +1,15 @@
 - name: ACI - New Tenant 2
   hosts: all
   tasks:
-  - debug:
-        msg: "SYSTEM: {{ inventory_hostname }}"
-  - debug:
-        msg: "USERNAME: {{ lookup('env', 'ANSIBLE_NET_USERNAME') }}"
-  - debug:
-        msg: "PASSWORD: {{ lookup('env', 'ANSIBLE_NET_PASSWORD') }}"
+  - debug: msg: "SYSTEM: {{ inventory_hostname }}"
+  - debug: msg: "USERNAME: {{ lookup('env', 'ANSIBLE_NET_USERNAME') }}"
+  - debug: msg: "PASSWORD: {{ lookup('env', 'ANSIBLE_NET_PASSWORD') }}"
+  
   - name: Display all variables/facts known for a host
     debug:
         var: hostvars[inventory_hostname]
         verbosity: 4
+        msg: hostvars[inventory_hostname]
     
   - name: Add a new tenant
     aci_tenant:
