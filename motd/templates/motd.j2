@@ -1,0 +1,8 @@
+{{ motd_ascii_art }}
+{% for item in motd_info %}
+  {% for key, value in item.iteritems() %}
+    {{ key }}{{ value }}
+  {% endfor %}
+{% endfor %}
+
+Last ansible run: {{ ansible_date_time.iso8601 }}
