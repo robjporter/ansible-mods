@@ -1,0 +1,128 @@
+- name: ==== Insert Proxy configuration ====
+  lineinfile:
+    dest: "~/.bash_profile"
+    line: "{{item}}"
+    state: present
+    insertafter: EOF
+  with_items:
+    - ""
+    - "# BEGIN ANSIBLE MANAGED BLOCK == PROXY =="
+    - "export http_proxy={{proxy_server}}/"
+    - "export https_proxy={{proxy_server}}/"
+    - "export ftp_proxy={{proxy_server}}/"
+    - "export no_proxy='{{no_proxy}}/'"
+    - "export HTTP_PROXY={{proxy_server}}/"
+    - "export HTTPS_PROXY={{proxy_server}}/"
+    - "export FTP_PROXY={{proxy_server}}/"
+    - "export NO_PROXY='{{no_proxy}}/'"
+    - "# END ANSIBLE MANAGED BLOCK == PROXY =="
+  ignore_errors: yes
+
+- name: ==== Insert Proxy configuration ====
+  lineinfile:
+    dest: "~/.zshrc"
+    line: "{{item}}"
+    state: present
+    insertafter: EOF
+  with_items:
+    - ""
+    - "# BEGIN ANSIBLE MANAGED BLOCK == PROXY =="
+    - "export http_proxy={{proxy_server}}/"
+    - "export https_proxy={{proxy_server}}/"
+    - "export ftp_proxy={{proxy_server}}/"
+    - "export no_proxy='{{no_proxy}}/'"
+    - "export HTTP_PROXY={{proxy_server}}/"
+    - "export HTTPS_PROXY={{proxy_server}}/"
+    - "export FTP_PROXY={{proxy_server}}/"
+    - "export NO_PROXY='{{no_proxy}}/'"
+    - "# END ANSIBLE MANAGED BLOCK == PROXY =="
+  ignore_errors: yes
+
+- name: ==== Insert Proxy configuration ====
+  lineinfile:
+    dest: "/etc/profile"
+    line: "{{item}}"
+    state: present
+    insertafter: EOF
+  with_items:
+    - ""
+    - "# BEGIN ANSIBLE MANAGED BLOCK == PROXY =="
+    - "export http_proxy={{proxy_server}}/"
+    - "export https_proxy={{proxy_server}}/"
+    - "export ftp_proxy={{proxy_server}}/"
+    - "export no_proxy='{{no_proxy}}/'"
+    - "export HTTP_PROXY={{proxy_server}}/"
+    - "export HTTPS_PROXY={{proxy_server}}/"
+    - "export FTP_PROXY={{proxy_server}}/"
+    - "export NO_PROXY='{{no_proxy}}/'"
+    - "# END ANSIBLE MANAGED BLOCK == PROXY =="
+  ignore_errors: yes
+
+- name: ==== Insert Proxy Yum configuration ====
+  lineinfile:
+    path: "/etc/yum.conf"
+    line: "{{item}}"
+    state: present
+    insertafter: EOF
+  with_items:
+    - "# BEGIN ANSIBLE MANAGED BLOCK == PROXY =="
+    - "proxy={{proxy_server}}"
+    - "# END ANSIBLE MANAGED BLOCK == PROXY =="
+
+- name: ==== Checking curl configuration exists ====
+  file:
+    path: "~/.curlrc"
+    state: touch
+    mode: "u=rw,g=r,o=r"
+
+- name: ==== Insert Proxy Curl configuration ====
+  lineinfile:
+    path: "~/.curlrc"
+    line: "{{item}}"
+    state: present
+    insertafter: EOF
+  with_items:
+    - "# BEGIN ANSIBLE MANAGED BLOCK == PROXY =="
+    - "proxy={{proxy_server}}"
+    - "# END ANSIBLE MANAGED BLOCK == PROXY =="
+
+- name: ==== Checking /etc/wgetrc exists ====
+  file:
+    path: /etc/wgetrc
+    state: touch
+    mode: "u=rw,g=r,o=r"
+
+- name: ==== Insert Proxy wget configuration ====
+  lineinfile:
+    dest: /etc/wgetrc
+    line: "{{item}}"
+    state: present
+    insertafter: EOF
+  with_items:
+    - "# BEGIN ANSIBLE MANAGED BLOCK == PROXY =="
+    - "use_proxy=on"
+    - "http_proxy={{proxy_server}}/"
+    - "https_proxy={{proxy_server}}/"
+    - "ftp_proxy={{proxy_server}}/"
+    - "no_proxy='{{no_proxy}}/'"
+    - "HTTP_PROXY={{proxy_server}}/"
+    - "HTTPS_PROXY={{proxy_server}}/"
+    - "FTP_PROXY={{proxy_server}}/"
+    - "NO_PROXY='{{no_proxy}}/'"
+    - "# END ANSIBLE MANAGED BLOCK == PROXY =="
+
+- name: ==== Source new bash config ====
+  shell: "source ~/.bash_profile"
+
+- name: ==== Source new bash config ====
+  shell: "source ~/.zshrc"
+  ignore_errors: yes
+
+- name: ==== Source new YUM config ====
+  shell: "source /etc/yum.conf"
+
+- name: ==== Source new wget config ====
+  shell: "source /etc/wgetrc"
+
+- name: ==== Source new profile config ====
+  shell: "source /etc/profile"
