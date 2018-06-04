@@ -1,8 +1,15 @@
----
-- name: Customise banner and prompt
-  hosts: all_vm
+- name: Install MOTD
+  hosts: all
   tasks:
-  - name: Modify main banner
-    become: yes
-    become_user: root
-  - copy: backup=yes src=motd dest=/etc/ owner=root group=root mode=0644
+  - name: ==== Include Archlinux ====
+    include_tasks: tasks/archlinux.yml
+    when: ansible_os_family == 'Archlinux'
+    static: no
+  - name: ==== Include Debian ====
+    include_tasks: tasks/debian.yml
+    when: ansible_os_family == 'Debian'
+    static: no
+  - name: ==== Include RedHat ====
+    include_tasks: tasks/redhat.yml
+    when: ansible_os_family == 'RedHat'
+    static: no

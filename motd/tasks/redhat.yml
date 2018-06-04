@@ -1,0 +1,17 @@
+- name: ==== Add MOTD ====
+  copy:
+    src: motd
+    dest: /etc/login
+
+- name: ==== Insert MOTD into profile ====
+  lineinfile:
+    dest: "/etc/profile"
+    line: "{{item}}"
+    state: present
+    insertafter: EOF
+  with_items:
+    - ""
+    - "# BEGIN ANSIBLE MANAGED BLOCK == MOTD =="
+    - "/etc/login"
+    - "# END ANSIBLE MANAGED BLOCK == MOTD =="
+  ignore_errors: yes
