@@ -1,0 +1,11 @@
+- name: ACI - New Tenant 2
+  hosts: all
+  tasks:
+  - name: Add a new tenant
+    aci_tenant:
+        host: "{{ inventory_hostname }}"
+        username: "{{ inventory_username }}"
+        password: "{{ inventory_password }}"
+        tenant: "{{ aci_tenant }}"
+        description: "{{ aci_tenant_description }}"
+        state: present
