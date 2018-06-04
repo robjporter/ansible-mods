@@ -1,12 +1,15 @@
-- name: ==== Include Archlinux ====
-  include_tasks: tasks/archlinux.yml
-  when: ansible_os_family == 'Archlinux'
-  static: no
-- name: ==== Include Debian ====
-  include_tasks: tasks/debian.yml
-  when: ansible_os_family == 'Debian'
-  static: no
-- name: ==== Include RedHat ====
-  include_tasks: tasks/redhat.yml
-  when: ansible_os_family == 'RedHat'
-  static: no
+- name: Install Proxy
+  hosts: all
+  tasks:
+  - name: ==== Include Archlinux ====
+    include_tasks: tasks/archlinux.yml
+    when: ansible_os_family == 'Archlinux'
+    static: no
+  - name: ==== Include Debian ====
+    include_tasks: tasks/debian.yml
+    when: ansible_os_family == 'Debian'
+    static: no
+  - name: ==== Include RedHat ====
+    include_tasks: tasks/redhat.yml
+    when: ansible_os_family == 'RedHat'
+    static: no
