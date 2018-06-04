@@ -1,7 +1,7 @@
 - name: Install Proxy
   hosts: all
   tasks:
-    - name: create {{username}} user
+    - name: create user
       user: name={{username}}
         createhome=yes
         state=present 

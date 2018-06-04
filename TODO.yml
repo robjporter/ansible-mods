@@ -1,12 +1,2 @@
-secure
-hostname
-    hostname: hostname
+
 webexteams
-newuser
-    username: roporter14
-    sudo: yes
-    password: B0mQg07j7VD8U
-ntp
-    timezone: Europe/London
-reboot
-test
