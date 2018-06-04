@@ -1,0 +1,15 @@
+- name: Disable firewall
+  hosts: all
+  tasks:
+    - name: ==== Include Archlinux.yml ====
+      include_tasks: tasks/archlinux.yml
+      when: ansible_os_family == 'Archlinux'
+      static: no
+    - name: ==== Include Debian.yml ====
+      include_tasks: tasks/debian.yml
+      when: ansible_os_family == 'Debian'
+      static: no
+    - name: ==== Include RedHat.yml ====
+      include_tasks: tasks/redhat.yml
+      when: ansible_os_family == 'RedHat'
+      static: no
