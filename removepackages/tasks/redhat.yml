@@ -1,0 +1,21 @@
+---
+- name: ==== Remove potential security risks ====
+  yum: name={{ item }} state=absent
+  ignore_errors: true
+  with_items:
+    - xinetd
+    - telnet-server
+    - rsh-server
+    - telnet
+    - rsh-server
+    - rsh
+    - ypbind
+    - ypserv
+    - tftp-server
+    - cronie-anacron
+    - bind
+    - vsftpd
+    - httpd
+    - dovecot
+    - squid
+    - net-snmpd
