@@ -1,0 +1,7 @@
+
+- name: Query all contracts
+  aci_contract:
+    host: apic
+    username: admin
+    password: SomeSecretPassword
+    state: query

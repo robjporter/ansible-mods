@@ -1,0 +1,9 @@
+
+- name: Query a specific contract
+  aci_contract:
+    host: apic
+    username: admin
+    password: SomeSecretPassword
+    tenant: production
+    contract: web_to_db
+    state: query
