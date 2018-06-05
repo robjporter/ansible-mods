@@ -1,0 +1,13 @@
+- name: ACI - Delete a Subnet
+  hosts: all
+  tasks:
+  - name: Delete a Subnet
+    aci_bd_subnet:
+      host: "{{ inventory_hostname }}"
+      username: "{{ lookup('env','ANSIBLE_NET_USERNAME') }}"
+      password: "{{ lookup('env','ANSIBLE_NET_PASSWORD') }}"
+      tenant: "{{ aci_tenant }}"
+      bd: "{{ aci_tenant_bd }}"
+      gateway: "{{ aci_subnet_dg }}"
+      mask: "{{ aci_subnet_mask }}"
+      state: absent

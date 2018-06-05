@@ -1,0 +1,20 @@
+- name: ACI - New Subnet
+  hosts: all
+  tasks:
+  - name: New Subnet
+    aci_bd_subnet:
+      host: "{{ inventory_hostname }}"
+      username: "{{ lookup('env','ANSIBLE_NET_USERNAME') }}"
+      password: "{{ lookup('env','ANSIBLE_NET_PASSWORD') }}"
+      tenant: "{{ aci_tenant }}"
+      vrf: "{{ aci_tenant_vrf }}"
+      bd: "{{ aci_tenant_bd }}"
+      subnet_name: "{{ aci_subnet_name }}"
+      description: "{{ aci_subnet_description }}"
+      gateway: "{{ aci_subnet_dg }}"
+      mask: "{{ aci_subnet_mask }}"
+      scope: "{{ aci_subnet_scope | default('private') }}"
+      route_profile_l3_out: "{{ aci_subnet_l3_out }}"
+      route_profile: "{{ aci_subnet_profile }}"
+      validate_certs: false
+      state: present
