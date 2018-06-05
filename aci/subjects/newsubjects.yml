@@ -11,7 +11,7 @@
       subject: "{{ aci_contract_subject }}"
       description: "{{ aci_contract_subject_description }}"
       reverse_filter: "{{ aci_contract_reverse | default('yes') }}"
-      priority: "Unspecified"
-      dscp: "Unspecified"
+      priority: "unspecified"
+      dscp: "unspecified"
       validate_certs: false
       state: present
