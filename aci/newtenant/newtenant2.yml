@@ -8,6 +8,7 @@
 
   - name: Add a new tenant
     aci_tenant:
+        host: "{{ inventory_hostname }}"
         tenant: "{{ aci_tenant }}"
         description: "{{ aci_tenant_description }}"
         state: present
