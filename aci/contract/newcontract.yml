@@ -10,4 +10,5 @@
       contract: "{{ aci_contract_name }}"
       description: "{{ aci_contract_description }}"
       scope: "{{ aci_contract_profile | default('application-profile') }}"
+      validate_certs: false
       state: present
