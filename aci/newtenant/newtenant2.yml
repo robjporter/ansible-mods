@@ -5,6 +5,10 @@
     debug:
         var: hostvars[inventory_hostname]
         verbosity: 4
+  - debug:
+      msg: "USERNAME: {{ ANSIBLE_NET_USERNAME }}"
+  - debug:
+      msg: "PASSWORD: {{ ANSIBLE_NET_PASSWORD }}"
 
   - name: Add a new tenant
     aci_tenant:
