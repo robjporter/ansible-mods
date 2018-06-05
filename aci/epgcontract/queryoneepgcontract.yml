@@ -1,0 +1,12 @@
+
+- name: Query a specific contract to EPG binding
+  aci_epg_to_contract:
+    host: apic
+    username: admin
+    password: SomeSecretPassword
+    tenant: anstest
+    ap: anstest
+    epg: anstest
+    contract: anstest_http
+    contract_type: provider
+    state: query

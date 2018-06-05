@@ -1,0 +1,8 @@
+
+- name: Query all provider contract to EPG bindings
+  aci_epg_to_contract:
+    host: apic
+    username: admin
+    password: SomeSecretPassword
+    contract_type: provider
+    state: query

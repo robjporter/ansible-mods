@@ -1,0 +1,14 @@
+- name: ACI - Remove EPG to Contract
+  hosts: all
+  tasks:
+  - name: Remove EPG to Contract
+    aci_epg_to_contract:
+      host: "{{ inventory_hostname }}"
+      username: "{{ lookup('env','ANSIBLE_NET_USERNAME') }}"
+      password: "{{ lookup('env','ANSIBLE_NET_PASSWORD') }}"
+      tenant: "{{ aci_tenant }}"
+      ap: "{{ aci_app_profile }}"
+      epg: "{{ aci_epg_name }}"
+      contract: "{{ aci_contract_name }}"
+      contract_type: provider
+      state: absent
