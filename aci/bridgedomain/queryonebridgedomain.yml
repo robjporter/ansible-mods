@@ -1,0 +1,17 @@
+- name: Query All Bridge Domains
+  aci_bd:
+    host: "{{ inventory_hostname }}"
+    username: "{{ username }}"
+    password: "{{ password }}"
+    validate_certs: true
+    state: query
+
+- name: Query a Bridge Domain
+  aci_bd:
+    host: "{{ inventory_hostname }}"
+    username: "{{ username }}"
+    password: "{{ password }}"
+    validate_certs: true
+    state: query
+    tenant: prod
+    bd: web_servers

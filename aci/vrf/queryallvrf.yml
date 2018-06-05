@@ -1,0 +1,9 @@
+- name: ACI - Remove Tenant VRF
+  hosts: all
+  tasks:
+  - name: Query all VRFs
+    aci_vrf:
+      host: "{{ inventory_hostname }}"
+      username: "{{ lookup('env','ANSIBLE_NET_USERNAME') }}"
+      password: "{{ lookup('env','ANSIBLE_NET_PASSWORD') }}"
+      state: query

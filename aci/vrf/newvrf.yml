@@ -1,0 +1,14 @@
+- name: ACI - New Tenant VRF
+  hosts: all
+  tasks:
+  - name: New Tenant VRF
+    aci_vrf:
+      host: "{{ inventory_hostname }}"
+      username: "{{ lookup('env','ANSIBLE_NET_USERNAME') }}"
+      password: "{{ lookup('env','ANSIBLE_NET_PASSWORD') }}"
+      tenant: "{{ aci_tenant }}"
+      vrf: "{{ aci_tenant_vrf }}"
+      descr: "{{ aci_tenant_vrf_description }}"
+      policy_control_preference: "{{ aci_policy_control_preference | default('enforced') }}"
+      policy_control_direction: "{{ aci_policy_control_direction | default('ingress') }}"
+      state: present
