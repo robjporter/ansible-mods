@@ -10,5 +10,6 @@
       ap: "{{ aci_app_profile }}"
       epg: "{{ aci_epg_name }}"
       contract: "{{ aci_contract_name }}"
-      contract_type: provider
+      contract_type: "{{ aci_contract_type }}"
+      validate_certs: false
       state: absent
