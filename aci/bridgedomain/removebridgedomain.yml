@@ -7,6 +7,6 @@
       username: "{{ lookup('env','ANSIBLE_NET_USERNAME') }}"
       password: "{{ lookup('env','ANSIBLE_NET_PASSWORD') }}"
       tenant: "{{ aci_tenant }}"
-      bd: web_servers
+      bd: "{{ aci_tenant_bd }}"
       validate_certs: false
       state: absent
