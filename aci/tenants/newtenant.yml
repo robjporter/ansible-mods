@@ -1,7 +1,7 @@
-- name: ACI - New Tenant 2
+- name: ACI - Create Tenant
   hosts: all
   tasks:
-  - name: Add a new tenant
+  - name: Create Tenant
     aci_tenant:
         host: "{{ inventory_hostname }}"
         username: "{{ lookup('env','ANSIBLE_NET_USERNAME') }}"
