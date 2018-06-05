@@ -3,5 +3,5 @@
     host: "{{ inventory_hostname }}"
     username: "{{ username }}"
     password: "{{ password }}"
-    validate_certs: true
+    validate_certs: false
     state: query

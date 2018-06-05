@@ -7,7 +7,7 @@
       username: "{{ lookup('env','ANSIBLE_NET_USERNAME') }}"
       password: "{{ lookup('env','ANSIBLE_NET_PASSWORD') }}"
       tenant: "{{ aci_tenant }}"
-      validate_certs: true
+      validate_certs: false
       tenant: prod
       bd: web_servers
       arp_flooding: yes

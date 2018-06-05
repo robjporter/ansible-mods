@@ -11,4 +11,5 @@
       descr: "{{ aci_tenant_vrf_description }}"
       policy_control_preference: "{{ aci_policy_control_preference | default('enforced') }}"
       policy_control_direction: "{{ aci_policy_control_direction | default('ingress') }}"
+      validate_certs: false
       state: present
