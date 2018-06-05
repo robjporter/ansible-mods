@@ -11,5 +11,5 @@
       bd: "{{ aci_tenant_bd }}"
       validate_certs: false
       bd_type: fc
-      enable_routing: {{ aci_tenant_bd_routing | default('no') }}
+      enable_routing: "{{ aci_tenant_bd_routing | default('no') }}"
       state: present

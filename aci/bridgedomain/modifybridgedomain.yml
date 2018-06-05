@@ -8,7 +8,7 @@
       password: "{{ lookup('env','ANSIBLE_NET_PASSWORD') }}"
       tenant: "{{ aci_tenant }}"
       bd: "{{ aci_tenant_bd }}"
-      arp_flooding: {{ aci_bd_arp_flooding | default('yes') }}
-      l2_unknown_unicast: {{ aci_bd_l2_unknown | default('flood') }}
+      arp_flooding: "{{ aci_bd_arp_flooding | default('yes') }}"
+      l2_unknown_unicast: "{{ aci_bd_l2_unknown | default('flood') }}"
       validate_certs: false
       state: present
