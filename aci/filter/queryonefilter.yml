@@ -1,0 +1,11 @@
+
+- name: Query a specific contract subject to filter binding
+  aci_contract_subject_to_filter:
+    host: apic
+    username: admin
+    password: SomeSecretPassword
+    tenant: production
+    contract: web_to_db
+    subject: test
+    filter: '{{ filter }}'
+    state: query

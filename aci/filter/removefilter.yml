@@ -1,0 +1,14 @@
+- name: ACI - Remove Filter
+  hosts: all
+  tasks:
+  - name: Remove Filter
+    aci_contract_subject_to_filter:
+      host: "{{ inventory_hostname }}"
+      username: "{{ lookup('env','ANSIBLE_NET_USERNAME') }}"
+      password: "{{ lookup('env','ANSIBLE_NET_PASSWORD') }}"
+      tenant: "{{ aci_tenant }}"
+      contract: "{{ aci_contract_name }}"
+      subject: "{{ aci_contract_subject }}"
+      filter: '{{ aci_contract_filter }}'
+      validate_certs: false
+      state: present
