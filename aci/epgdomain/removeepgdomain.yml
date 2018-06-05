@@ -1,0 +1,14 @@
+- name: ACI - New Contract
+  hosts: all
+  tasks:
+  - name: Remove an existing physical domain to EPG binding
+    aci_epg_to_domain:
+      host: "{{ inventory_hostname }}"
+      username: "{{ lookup('env','ANSIBLE_NET_USERNAME') }}"
+      password: "{{ lookup('env','ANSIBLE_NET_PASSWORD') }}"
+      tenant: "{{ aci_tenant }}"
+      ap: "{{ aci_app_profile }}"
+      epg: "{{ aci_epg_name }}"
+      domain: "{{ aci_domain_name }}"
+      validate_certs: false
+      state: absent
