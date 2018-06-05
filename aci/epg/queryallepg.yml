@@ -1,0 +1,7 @@
+
+- name: Query all EPGs
+  aci_epg:
+    host: apic
+    username: admin
+    password: SomeSecretPassword
+    state: query

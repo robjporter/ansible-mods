@@ -1,0 +1,15 @@
+- name: ACI - New Subnet
+  hosts: all
+  tasks:
+  - name: Add a new EPG
+    aci_epg:
+      host: "{{ inventory_hostname }}"
+      username: "{{ lookup('env','ANSIBLE_NET_USERNAME') }}"
+      password: "{{ lookup('env','ANSIBLE_NET_PASSWORD') }}"
+      tenant: "{{ aci_tenant }}"
+      bd: "{{ aci_tenant_bd }}"
+      ap: "{{ aci_app_profile }}"
+      epg: "{{ aci_epg_name }}"
+      description: "{{ aci_epg_description }}"
+      validate_certs: false
+      preferred_group: yes
