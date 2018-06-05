@@ -9,4 +9,5 @@
       tenant: "{{ aci_tenant }}"
       ap: "{{ aci_app_profile }}"
       description: "{{ aci_app_profile_description }}"
+      validate_certs: false
       state: present
