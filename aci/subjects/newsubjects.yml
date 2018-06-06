@@ -6,7 +6,7 @@
       host: "{{ inventory_hostname }}"
       username: "{{ lookup('env','ANSIBLE_NET_USERNAME') }}"
       password: "{{ lookup('env','ANSIBLE_NET_PASSWORD') }}"
-      tenant: "{{ item.aci_tenant }}"
+      tenant: "{{ aci_tenant }}"
       contract: "{{ item.aci_contract_name }}"
       subject: "{{ item.aci_contract_subject }}"
       description: "{{ item.aci_contract_subject_description }}"

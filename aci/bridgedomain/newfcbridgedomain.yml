@@ -7,9 +7,11 @@
       username: "{{ lookup('env','ANSIBLE_NET_USERNAME') }}"
       password: "{{ lookup('env','ANSIBLE_NET_PASSWORD') }}"
       tenant: "{{ aci_tenant }}"
-      vrf: "{{ aci_tenant_vrf }}"
-      bd: "{{ aci_tenant_bd }}"
+      vrf: "{{ item.aci_tenant_vrf }}"
+      bd: "{{ item.aci_tenant_bd }}"
       validate_certs: false
       bd_type: fc
-      enable_routing: "{{ aci_tenant_bd_routing | default('no') }}"
+      enable_routing: "{{ item.aci_tenant_bd_routing | default('no') }}"
       state: present
+    with_items:
+      - "{{ bd }}"

@@ -6,7 +6,7 @@
       host: "{{ inventory_hostname }}"
       username: "{{ lookup('env','ANSIBLE_NET_USERNAME') }}"
       password: "{{ lookup('env','ANSIBLE_NET_PASSWORD') }}"
-      tenant: "{{ item.aci_tenant }}"
+      tenant: "{{ aci_tenant }}"
       vrf: "{{ item.aci_tenant_vrf }}"
       descr: "{{ item.aci_tenant_vrf_description }}"
       policy_control_preference: "{{ item.aci_policy_control_preference | default('enforced') }}"

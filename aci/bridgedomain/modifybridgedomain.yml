@@ -6,7 +6,7 @@
       host: "{{ inventory_hostname }}"
       username: "{{ lookup('env','ANSIBLE_NET_USERNAME') }}"
       password: "{{ lookup('env','ANSIBLE_NET_PASSWORD') }}"
-      tenant: "{{ item.aci_tenant }}"
+      tenant: "{{ aci_tenant }}"
       bd: "{{ item.aci_tenant_bd }}"
       arp_flooding: "{{ item.aci_bd_arp_flooding | default('yes') }}"
       l2_unknown_unicast: "{{ item.aci_bd_l2_unknown | default('flood') }}"
