@@ -13,3 +13,5 @@
       contract_type: "{{ aci_contract_type }}"
       validate_certs: false
       state: present
+    with_items:
+      - "{{ contracts }}"

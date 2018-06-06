@@ -6,10 +6,12 @@
       host: "{{ inventory_hostname }}"
       username: "{{ lookup('env','ANSIBLE_NET_USERNAME') }}"
       password: "{{ lookup('env','ANSIBLE_NET_PASSWORD') }}"
-      tenant: "{{ aci_tenant }}"
-      contract: "{{ aci_contract_name }}"
-      subject: "{{ aci_contract_subject }}"
-      filter: '{{ aci_contract_filter }}'
-      log: "{{ aci_contract_filter_log | default('none') }}"
+      tenant: "{{ item.aci_tenant }}"
+      contract: "{{item.aci_contract_name }}"
+      subject: "{{ item.aci_contract_subject }}"
+      filter: '{{ item.aci_contract_filter }}'
+      log: "{{ item.aci_contract_filter_log | default('none') }}"
       validate_certs: false
       state: present
+    with_items:
+      - "{{ filters }}"

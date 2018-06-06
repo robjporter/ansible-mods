@@ -6,10 +6,12 @@
       host: "{{ inventory_hostname }}"
       username: "{{ lookup('env','ANSIBLE_NET_USERNAME') }}"
       password: "{{ lookup('env','ANSIBLE_NET_PASSWORD') }}"
-      tenant: "{{ aci_tenant }}"
-      vrf: "{{ aci_tenant_vrf }}"
-      descr: "{{ aci_tenant_vrf_description }}"
-      policy_control_preference: "{{ aci_policy_control_preference | default('enforced') }}"
-      policy_control_direction: "{{ aci_policy_control_direction | default('ingress') }}"
+      tenant: "{{ item.aci_tenant }}"
+      vrf: "{{ item.aci_tenant_vrf }}"
+      descr: "{{ item.aci_tenant_vrf_description }}"
+      policy_control_preference: "{{ item.aci_policy_control_preference | default('enforced') }}"
+      policy_control_direction: "{{ item.aci_policy_control_direction | default('ingress') }}"
       validate_certs: false
       state: present
+    with_items:
+      - "{{ vrf }}"

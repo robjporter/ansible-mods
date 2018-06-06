@@ -6,11 +6,13 @@
       host: "{{ inventory_hostname }}"
       username: "{{ lookup('env','ANSIBLE_NET_USERNAME') }}"
       password: "{{ lookup('env','ANSIBLE_NET_PASSWORD') }}"
-      tenant: "{{ aci_tenant }}"
-      ap: "{{ aci_app_profile }}"
-      epg: "{{ aci_epg_name }}"
-      domain: "{{ aci_domain_name }}"
-      domain_type: "{{ aci_domain_type | default('vmm') }}"
-      vm_provider: "{{ aci_domain_provider | default('vmware') }}"
+      tenant: "{{ item.aci_tenant }}"
+      ap: "{{ item.aci_app_profile }}"
+      epg: "{{ item.aci_epg_name }}"
+      domain: "{{ item.aci_domain_name }}"
+      domain_type: "{{ item.aci_domain_type | default('vmm') }}"
+      vm_provider: "{{ item.aci_domain_provider | default('vmware') }}"
       validate_certs: false
       state: present
+    with_items:
+      - "{{ domains }}"
