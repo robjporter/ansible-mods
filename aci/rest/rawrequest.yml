@@ -1,6 +1,28 @@
 - name: ACI - Send Raw Request
   hosts: all
   tasks:
+  - name: Authenticate
+    aci_rest:
+      host: "{{ inventory_hostname }}"
+      username: "{{ lookup('env','ANSIBLE_NET_USERNAME') }}"
+      password: "{{ lookup('env','ANSIBLE_NET_PASSWORD') }}"
+      method: "post"
+      path: "api/aaaLogin.json"
+      content: '{
+        "aaaUser" : {
+          "attributes" : {
+            "name" : "{{ lookup('env','ANSIBLE_NET_USERNAME') }}",
+            "pwd" : "{{ lookup('env','ANSIBLE_NET_PASSWORD') }}"
+          }
+        }
+      }'
+      validate_certs: false
+    register: response
+    delegate_to: localhost
+
+  - debug:
+    msg: "{{ response }}"
+
   - name: Send Raw Request
     aci_rest:
       host: "{{ inventory_hostname }}"
@@ -13,3 +35,21 @@
     delegate_to: localhost
     with_items:
       - "{{ requests }}"
+
+  - name: Logout
+    aci_rest:
+      host: "{{ inventory_hostname }}"
+      username: "{{ lookup('env','ANSIBLE_NET_USERNAME') }}"
+      password: "{{ lookup('env','ANSIBLE_NET_PASSWORD') }}"
+      method: "post"
+      path: "api/aaaLogout.json"
+      content: '{
+        "aaaUser" : {
+          "attributes" : {
+            "name" : "{{ lookup('env','ANSIBLE_NET_USERNAME') }}"
+          }
+        }
+      }'
+      validate_certs: false
+    register: response
+    delegate_to: localhost
