@@ -1,0 +1,10 @@
+- name: Cisco Spark - Text Message to a Room
+  hosts: all
+  tasks:
+  - name: Text Message to a Room
+    cisco_spark:
+      recipient_type: roomId
+      recipient_id: "{{ roomid }}"
+      message_type: text
+      personal_token: "{{ token }}"
+      message: "{{ message }}"

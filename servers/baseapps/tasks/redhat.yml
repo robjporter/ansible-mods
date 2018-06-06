@@ -64,3 +64,16 @@
     - sysstat
     - dstat
     - yum-cron
+    - command-not-found
+    - curl
+    - debconf
+    - dmidecode
+    - htop
+    - iftop
+    - iotop
+    - mosh
+    - pciutils
+    - tshark
+    - encfs
+    - libfuse-dev
+    - fuse-utils
