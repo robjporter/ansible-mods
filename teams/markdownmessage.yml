@@ -4,7 +4,7 @@
   - name: Text Message to a Room
     cisco_spark:
       recipient_type: roomId
-      recipient_id: "{{ roomid }}"
+      recipient_id: "{{ teams_roomid }}"
       message_type: markdown
-      personal_token: "{{ token }}"
-      message: "{{ message }}"
+      personal_token: "{{ teams_token }}"
+      message: "{{ teams_message }}"
