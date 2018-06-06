@@ -14,4 +14,4 @@
       validate_certs: false
       state: present
     with_items:
-      - "{{ contracts }}"
+      - "{{ epgcontracts }}"
