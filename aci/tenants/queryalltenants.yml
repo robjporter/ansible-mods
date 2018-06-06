@@ -9,3 +9,7 @@
       output_level: normal
       validate_certs: false
       state: query
+    register: output
+
+  - debug:
+          var: output.stdout_lines

@@ -7,6 +7,10 @@
       username: "{{ lookup('env','ANSIBLE_NET_USERNAME') }}"
       password: "{{ lookup('env','ANSIBLE_NET_PASSWORD') }}"
       tenant: "{{ aci_tenant }}"
-      output_level: normal
+      register: output
       validate_certs: false
       state: query
+    register: output
+
+  - debug:
+          var: output.stdout_lines
