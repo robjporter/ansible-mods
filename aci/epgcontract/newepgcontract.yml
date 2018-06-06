@@ -6,11 +6,11 @@
       host: "{{ inventory_hostname }}"
       username: "{{ lookup('env','ANSIBLE_NET_USERNAME') }}"
       password: "{{ lookup('env','ANSIBLE_NET_PASSWORD') }}"
-      tenant: "{{ aci_tenant }}"
-      ap: "{{ aci_app_profile }}"
-      epg: "{{ aci_epg_name }}"
-      contract: "{{ aci_contract_name }}"
-      contract_type: "{{ aci_contract_type }}"
+      tenant: "{{ item.aci_tenant }}"
+      ap: "{{ item.aci_app_profile }}"
+      epg: "{{ item.aci_epg_name }}"
+      contract: "{{ item.aci_contract_name }}"
+      contract_type: "{{ item.aci_contract_type }}"
       validate_certs: false
       state: present
     with_items:
