@@ -1,0 +1,15 @@
+- name: ACI - New Application Profile
+  hosts: all
+  tasks:
+  - name: Add Bridge Domain
+    aci_bd:
+      host: "{{ inventory_hostname }}"
+      username: "{{ lookup('env','ANSIBLE_NET_USERNAME') }}"
+      password: "{{ lookup('env','ANSIBLE_NET_PASSWORD') }}"
+      tenant: "{{ bd.aci_tenant }}"
+      vrf: "{{ bd.aci_tenant_vrf }}"
+      bd: "{{ bd.aci_tenant_bd }}"
+      validate_certs: false
+      state: present
+    with_items:
+      - {{ bd }}
