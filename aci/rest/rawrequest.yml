@@ -1,0 +1,15 @@
+- name: ACI - Send Raw Request
+  hosts: all
+  tasks:
+  - name: Send Raw Request
+    aci_rest:
+      host: "{{ inventory_hostname }}"
+      username: "{{ lookup('env','ANSIBLE_NET_USERNAME') }}"
+      password: "{{ lookup('env','ANSIBLE_NET_PASSWORD') }}"
+      method: "{{ item.requestmethod }}"
+      path: "{{ item.requestpath }}"
+      content: "{{ item.requestcontent }}"
+      validate_certs: false
+    delegate_to: localhost
+    with_items:
+      - "{{ requests }}"

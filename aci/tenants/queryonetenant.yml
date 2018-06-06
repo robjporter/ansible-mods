@@ -1,5 +1,6 @@
 - name: ACI - Query a tenant
   hosts: all
+  gather_facts: false
   tasks:
   - name: Query a tenant
     aci_tenant:
@@ -13,4 +14,4 @@
     register: output
 
   - debug:
-          var: output.stdout_lines
+          var: "{{ output }}"
