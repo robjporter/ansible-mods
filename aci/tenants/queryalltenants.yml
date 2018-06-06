@@ -6,5 +6,9 @@
       host: "{{ inventory_hostname }}"
       username: "{{ lookup('env','ANSIBLE_NET_USERNAME') }}"
       password: "{{ lookup('env','ANSIBLE_NET_PASSWORD') }}"
+      register: output
       validate_certs: false
       state: query
+
+  - debug:
+          var: output.stdout_lines
