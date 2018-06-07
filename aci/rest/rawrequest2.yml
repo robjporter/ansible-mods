@@ -1,0 +1,13 @@
+- name: ACI - Send Raw Request
+  hosts: all
+  tasks:
+  - name: Send Raw Request
+    aci_rest:
+      host: "10.51.31.137"
+      username: "admin"
+      password: "C15co123"
+      method: "post"
+      path: "/api/mo/uni/userext/user-operations.json"
+      content: '{"aaaUser":{"attributes":{"name":"operations","pwd":"C15co123","firstName":"George","lastName":"Washington","phone":"4085551212","email":"georgewa@example.com"},"children":[{"aaaUserDomain":{"attributes":{"name":"ExampleCorp"},"children":[{"aaaUserRole":{"attributes":{"name":"admin"}}}]}}]}}'
+      use_ssl: true
+      validate_certs: false
