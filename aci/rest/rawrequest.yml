@@ -10,6 +10,5 @@
       path: "{{ item.requestpath }}"
       content: "{{ item.requestcontent }}"
       validate_certs: false
-    delegate_to: localhost
     with_items:
       - "{{ requests }}"
